@@ -15,8 +15,8 @@
 #   - handle the files - i.e. save/close
 
 import sys
-from .my_modules.asm_parser import command_parse
-from .my_modules.asm_translator import asm_translator
+from my_modules.asm_parser import command_parse
+from my_modules.asm_translator import asm_translator
 
 input_file = open(sys.argv[1], "r")
 
@@ -25,7 +25,7 @@ output_file_extension = ".hack"
 
 output_file = open(file_name+output_file_extension, "a")
 
-parsed_input = asm_parser.command_parse(input_file)
+parsed_input = command_parse(input_file)
 parsed_commands = parsed_input[0]
 labels_dict = parsed_input[1]
 

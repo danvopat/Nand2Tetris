@@ -50,10 +50,12 @@ def asm_translator(parsed_commands, labels):
     }
     output_lines = []
     for command in parsed_commands:
-        if re.match(r"@\d+|@R\d+", command[0]):
+        if re.match(r"@\d+", command[0]):
             output_lines.append("0" + "{0:015b}".format(int(command[0][1:])) + "\n")
-        elif command[0][0] == "@" and command[1:] in labels:
-            output_lines.append("0" + "{0:015b}".format(labels[command[1:]]) + "\n")
+        elif re.match(r"@R\d+", command[0]):
+            output_lines.append("0" + "{0:015b}".format(int(command[0][2:])) + "\n")
+        elif command[0][0] == "@" and command[0][1:] in labels:
+            output_lines.append("0" + "{0:015b}".format(labels[command[0][1:]]) + "\n")
         elif command[1] == "=":
             output_lines.append("111" + comp_dict[command[2]] + dest_dict[command[0]] + "000\n")
         else:

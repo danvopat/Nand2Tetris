@@ -33,7 +33,8 @@ def command_parse(input_file):
             parsed_command.append(command)
             current_command_addr += 1
         elif command.startswith("("):
-            labels_dict[command[1:-1]] = current_command_addr + 1
+            labels_dict[command[1:-1]] = current_command_addr
+            continue
         elif "=" in command:
             parsed_command.append(command.split("=")[0])
             parsed_command.append("=")
@@ -46,4 +47,5 @@ def command_parse(input_file):
             current_command_addr += 1
         parsed_commands.append(parsed_command)
     print(labels_dict)
+    print(parsed_commands)
     return [parsed_commands, labels_dict]  # potenciálně důvod, proč z toho udělat class?
