@@ -25,6 +25,7 @@ def command_parse(input_file):
         if command != "":
             commands.append(command)
     labels_dict = {}
+
     parsed_commands = []
     current_command_addr = 0
     for command in commands:
@@ -46,6 +47,4 @@ def command_parse(input_file):
             parsed_command.append(command.split(";")[1])
             current_command_addr += 1
         parsed_commands.append(parsed_command)
-    print(labels_dict)
-    print(parsed_commands)
     return [parsed_commands, labels_dict]  # potenciálně důvod, proč z toho udělat class?
